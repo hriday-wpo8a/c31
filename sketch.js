@@ -1,3 +1,38 @@
+//examples of different types of data in javascript
+// string
+var string = "this is a string";
+console.log(string);
+//numbers
+var num = 100 ;
+console.log(num);
+//boolean 
+var boolean = true ;
+console.log(boolean);
+//undefined
+var object ; 
+console.log(object);
+//assingining the same undefied object to none
+object = null;
+console.log(object);
+//example on arrays
+//an array holding same data type
+var arr1 = [1,2,3,4,5];
+console.log(arr1);
+var arr2 = ["name",12,true];
+console.log(arr2);
+// an array storing list of arrays
+var arr3  = [[1,2],[3,4],[5,6]];
+console.log(arr3);
+console.log(arr3[0]);
+console.log(arr3[1][0]);
+// to add an element in array 
+arr3.push("hriday");
+console.log(arr3);
+//to remove an element in the array
+arr3.pop();
+console.log(arr3);
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,6 +42,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
+var gameState ="onSling"
 
 
 function preload() {
@@ -68,17 +104,23 @@ function draw(){
     slingshot.display();    
 }
 
+
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(gameState!=="launched"){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
+   
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "launched";
+
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+        //slingshot.attach(bird.body);
     }
 }
